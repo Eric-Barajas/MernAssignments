@@ -30,7 +30,7 @@ const UserForm = (props) => {
                 </div>
                 <div>
                     <label>Password: </label>
-                    <input type="text" onChange={(e) => setPassword(e.target.value)} />
+                    <input type="password" onChange={(e) => setPassword(e.target.value)} />
                 </div>
                 <div>
                     <label>Confirm Password: </label>
@@ -40,11 +40,11 @@ const UserForm = (props) => {
             </form>
             <div>
                 <h4> Your Form Data</h4>
-                <p> First Name: </p>
-                <p> Last Name: </p>
-                <p> Email Address: </p>
-                <p> Password: </p>
-                <p> Confirm Password: </p>
+                <p> First Name: {firstname} </p>
+                <p> Last Name: {lastname} </p>
+                <p> Email Address: {email} </p>
+                <p> Password: {password} </p>
+                <p> Confirm Password: {confirmpassword} </p>
             </div>
         </div>
     );
