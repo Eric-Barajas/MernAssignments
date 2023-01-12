@@ -11,6 +11,8 @@ const UserForm = (props) => {
         e.preventDefault();
         const newUser = { firstname, lastname, email, password, confirmpassword };
         console.log("Welcome", newUser);
+        setLastName("");
+        // setting LastName back to an appropriate starting value.
     };
 
     return (
@@ -22,7 +24,9 @@ const UserForm = (props) => {
                 </div>
                 <div>
                     <label>Last Name: </label>
-                    <input type="text" onChange={(e) => setLastName(e.target.value)} />
+                    <input type="text" onChange={(e) => setLastName(e.target.value)} value={lastname} />
+                    {/* by adding the value bit: We've now applied what's known as two-way data binding, 
+                    and whatever value is currently in the username state will match what is in the form.   */}
                 </div>
                 <div>
                     <label>Email Address: </label>
