@@ -6,8 +6,11 @@ const UserForm = (props) => {
     const [lastname, setLastName] = useState("");
     const [lastnameError, setLastNameError] = useState("");
     const [email, setEmail] = useState("");
+    const [emailError, setEmailError] = useState("");
     const [password, setPassword] = useState("");
+    const [passwordError, setPasswordError] = useState("");
     const [confirmpassword, setConfirmPassword] = useState("");
+    const [confirmpasswordError, setConfirmPasswordError] = useState("");
 
     //COMBINED STATE SETTING IT UP (Incomplete)
     // const [user, setUser] = useState({
@@ -46,6 +49,34 @@ const UserForm = (props) => {
             setLastNameError("");
         }
     }
+    const handleEmail = (e) => {
+        setEmail(e.target.value);
+        if (e.target.value.length < 5) {
+            setEmailError(" Field must be at least 5 characters ");
+        } else {
+            setEmailError("");
+        }
+    }
+    const handlePassword = (e) => {
+        setPassword(e.target.value);
+        if (e.target.value.length < 8) {
+            setPasswordError(" Field must be at least 8 characters ");
+        } else {
+            setPasswordError("");
+        }
+    }
+    const handleConfirmPassword = (e) => {
+        setConfirmPassword(e.target.value);
+        if (e.target.value.length < 8) {
+            setConfirmPasswordError(" Field must be at least 8 characters ");
+        }
+        else if (e.target.value !== password) {
+            setConfirmPasswordError(" Passwords must match! ");
+        }
+        else {
+            setConfirmPasswordError("");
+        }
+    }
 
     return (
         <div>
@@ -70,15 +101,30 @@ const UserForm = (props) => {
                 </div>
                 <div>
                     <label>Email Address: </label>
-                    <input type="text" onChange={(e) => setEmail(e.target.value)} />
+                    <input type="text" onChange={handleEmail} />
+                    {
+                        emailError ?
+                            <p style={{ color: 'red' }}>{emailError}</p> :
+                            ''
+                    }
                 </div>
                 <div>
                     <label>Password: </label>
-                    <input type="password" onChange={(e) => setPassword(e.target.value)} />
+                    <input type="password" onChange={handlePassword} />
+                    {
+                        passwordError ?
+                            <p style={{ color: 'red' }}>{passwordError}</p> :
+                            ''
+                    }
                 </div>
                 <div>
                     <label>Confirm Password: </label>
-                    <input type="text" onChange={(e) => setConfirmPassword(e.target.value)} />
+                    <input type="text" onChange={handleConfirmPassword} />
+                    {
+                        confirmpasswordError ?
+                            <p style={{ color: 'red' }}>{confirmpasswordError}</p> :
+                            ''
+                    }
                 </div>
                 <input type="submit" value="Create User" />
             </form>

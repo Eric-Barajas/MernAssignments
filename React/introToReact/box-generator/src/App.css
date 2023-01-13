@@ -1,0 +1,60 @@
+.App {
+  text-align: center;
+}
+
+.App {
+  text-align: center;
+}
+
+.container {
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.flex-row {
+  display: flex;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.box {
+  padding: 10px;
+  width: 20%;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  background-color: whitesmoke;
+}
+
+.box:not(:last-child) {
+  margin-right: 15px;
+}
+
+.box.flipped {
+  background-color: aliceblue;
+}
+
+/* front hidden when flipped */
+.box.flipped .front {
+  display: none;
+}
+
+/* back hidden by default */
+.box .back {
+  display: none;
+}
+
+/* back shown when flipped */
+.box.flipped .back {
+  display: block;
+}
+
+.bg-aliceblue {
+  background-color: aliceblue;
+}
