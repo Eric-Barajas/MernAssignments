@@ -14,7 +14,7 @@ const ColorPicker = (props) => {
         })
     }
 
-
+    // This will deconstruct the box
     const { color, width, height } = newBox;
     return (
         <form onSubmit={(e) => handleSubmit(e, newBox)}>
