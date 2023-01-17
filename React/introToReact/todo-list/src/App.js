@@ -21,7 +21,7 @@ function App() {
     setToDoList([...toDoList, newToDo])
   }
 
-  const isComplete = (index) => {
+  const isDone = (index) => {
     const updatedTodoList = toDoList.map((todo, i) => {
       if (index === i) {
         return {
@@ -46,7 +46,7 @@ function App() {
     <div className="App">
       <Container>
         <Task handleSubmit={handleSubmit} />
-        <DisplayTask toDoList={toDoList} isComplete={isComplete} handleDelete={handleDelete} />
+        <DisplayTask toDoList={toDoList} isDone={isDone} handleDelete={handleDelete} />
       </Container>
     </div>
   );
