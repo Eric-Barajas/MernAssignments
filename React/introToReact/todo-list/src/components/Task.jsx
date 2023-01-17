@@ -8,14 +8,20 @@ const Task = (props) => {
     const { handleSubmit } = props;
     const [newTask, setNewTask] = useState("");
 
+    const submitTask = (e) => {
+        e.preventDefault();
+        handleSubmit(e, newTask);
+        setNewTask('');
+    }
+
     return (
         <>
             <Container>
                 <div>
-                    <form onSubmit={(e) => handleSubmit(e, newTask)}>
+                    <form onSubmit={(e) => submitTask(e, newTask)}>
                         <input onChange={(e) => {
                             setNewTask(e.target.value);
-                        }} type='text' placeholder='Task' />
+                        }} type='text' placeholder='Task' value={newTask} />
                         <input className='btn btn-primary ms-3' type="submit" value='Add' />
                     </form>
                 </div>

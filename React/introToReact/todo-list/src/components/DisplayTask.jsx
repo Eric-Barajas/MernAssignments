@@ -11,15 +11,14 @@ const DisplayTask = (props) => {
             }}>
                 {toDoList.map((todo, idx) => {
                     return (
-                        <>
-                            <p>{todo.isComplete}</p>
+                        <div key={idx}>
                             {
                                 todo.isComplete ? <p className="complete"> {todo.toDo} </p> : <p> {todo.toDo} </p>
                             }
                             {/* <p key={idx} value={todo.toDo} > {todo.toDo} </p> */}
                             <input type="checkbox" checked={todo.isComplete} onChange={e => isDone(idx)} />
                             <input onClick={(e) => { handleDelete(idx) }} className='btn btn-dark ms-3' type="submit" value='Delete' />
-                        </>
+                        </div>
                     )
                 }
                 )}
