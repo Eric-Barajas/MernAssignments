@@ -1,5 +1,5 @@
 import { useState } from 'react';
-// import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 // import { useParams } from 'react-router-dom';
 // import People from './views/People';
 // import Planets from './views/Planets';
@@ -9,7 +9,8 @@ import axios from 'axios';
 const Wrapper = (props) => {
     const [category, setCategory] = useState("people");
     const [id, setId] = useState(null);
-    const [information, setInformation] = useState({})
+    const [information, setInformation] = useState({});
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         console.log("test")
@@ -17,7 +18,10 @@ const Wrapper = (props) => {
         axios.get(`https://swapi.dev/api/${category}/${id}/`).then(res => {
             setInformation(res.data)
         }).catch(err => {
-            console.log(err)
+            console.log(err.response.status)
+            if (err.response.status === 404) {
+                navigate("/error")
+            }
         })
     }
 
@@ -38,7 +42,7 @@ const Wrapper = (props) => {
                 <div>
                     <h1> {information.name} </h1>
                     <p> Climate: {information.climate} </p>
-                    <p> Terain: {information.terain} </p>
+                    <p> Terrain: {information.terrain} </p>
                     <p> Surface Water: {information.surface_water} </p>
                     <p> Population: {information.population} </p>
                 </div>

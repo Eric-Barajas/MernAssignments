@@ -1,6 +1,9 @@
 const NotFound = props => {
     return (
-        <h1>PAGE NOT FOUND!!!!</h1>
+        <div>
+            <h1>PAGE NOT FOUND!!!!</h1>
+            <img style={{ width: "1000px" }} src={require('../static/images/images.jpeg')} />
+        </div>
     )
 }
 
