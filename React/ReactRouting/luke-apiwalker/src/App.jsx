@@ -4,7 +4,6 @@ import NotFound from './views/NotFound';
 import Wrapper from './views/Wrapper';
 
 function App() {
-
   return (
     <div className="App">
       <header className="App-header">
@@ -15,7 +14,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/home" replace />} />
         <Route path="/home" element={<Wrapper />} />
-        <Route path='/home/:category/:id/' element={<Wrapper />} />
         {/* If none of the above routes match, use NotFound View */}
         <Route path="*" element={<NotFound />} />
       </Routes>

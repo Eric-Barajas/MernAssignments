@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import { useParams } from 'react-router-dom';
-// import People from './views/People';
-// import Planets from './views/Planets';
-// import NotFound from './views/NotFound';
+import PlanetsCard from './PlanetsCard';
+import PersonCard from './PersonCard';
 import axios from 'axios';
 
 const Wrapper = (props) => {
@@ -17,37 +15,13 @@ const Wrapper = (props) => {
         e.preventDefault()
         axios.get(`https://swapi.dev/api/${category}/${id}/`).then(res => {
             setInformation(res.data)
+
         }).catch(err => {
             console.log(err.response.status)
             if (err.response.status === 404) {
                 navigate("/error")
             }
         })
-    }
-
-    const displayInformation = (props) => {
-        if (category === "people") {
-            return (
-                <div>
-                    <h1> {information.name} </h1>
-                    <p> Height: {information.height} cm</p>
-                    <p> Mass: {information.mass} kg</p>
-                    <p> Hair Color: {information.hair_color}</p>
-                    <p> Skin Color: {information.skin_color}</p>
-                </div>
-            )
-        }
-        else {
-            return (
-                <div>
-                    <h1> {information.name} </h1>
-                    <p> Climate: {information.climate} </p>
-                    <p> Terrain: {information.terrain} </p>
-                    <p> Surface Water: {information.surface_water} </p>
-                    <p> Population: {information.population} </p>
-                </div>
-            )
-        }
     }
 
     return (
@@ -64,9 +38,15 @@ const Wrapper = (props) => {
                     <input type="submit" value="Search" />
                 </form>
             </div>
-            <div>
-                {displayInformation()}
-            </div>
+            {
+                category === "people" ?
+                    <div>
+                        {<PersonCard information={information} />}
+                    </div> :
+                    <div>
+                        {<PlanetsCard information={information} />}
+                    </div>
+            }
         </div>
     )
 }
