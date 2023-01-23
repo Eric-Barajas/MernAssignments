@@ -20,7 +20,7 @@ const DisplayTask = (props) => {
                             }
                             {/* <p key={idx} value={todo.toDo} > {todo.toDo} </p> */}
                             <input type="checkbox" checked={todo.isComplete} onChange={e => isDone(idx)} />
-                            <input onClick={(e) => { handleDelete(idx) }} className='btn btn-dark' type="submit" value='Delete' />
+                            <input onClick={(e) => { handleDelete(idx) }} className='btn btn-dark ms-3' type="submit" value='Delete' />
                         </div>
                     )
                 }
