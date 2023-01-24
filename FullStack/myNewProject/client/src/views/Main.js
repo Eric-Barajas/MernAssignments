@@ -1,16 +1,27 @@
 import React, { useEffect, useState } from 'react'
 import PersonForm from '../components/PersonForm';
-import axios from 'axios';
-export default () => {
-    const [message, setMessage] = useState("Loading...")
+import PersonList from '../components/PersonList';
+
+const Main = (props) => {
+    const [people, setPeople] = useState([]);
+    const [loaded, setLoaded] = useState(false);
+
     useEffect(() => {
-        axios.get("http://localhost:8000/api")
-            .then(res => setMessage(res.data.message))
+        axios.get('http://localhost:8000/api/people')
+            .then(res => {
+                setPeople(res.data);
+                setLoaded(true);
+            })
+            .catch(err => console.error(err));
     }, []);
+
     return (
         <div>
-            <h2>Message from the backend: {message}</h2>
             <PersonForm />
+            <hr />
+            {loaded && <PersonList people={people} />}
         </div>
     )
 }
+
+export default Main;
