@@ -4,6 +4,7 @@ import './App.css';
 import NewProduct from './components/NewProduct'
 import AllProducts from './components/AllProducts';
 import OneProduct from './components/OneProduct';
+import EditProduct from './components/EditProduct';
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
         <Route path='/' element={<Navigate to='/product' replace />} />
         <Route path='/products' element={<AllProducts />} />
         <Route path='/product/new' element={<NewProduct />} />
-        <Route path='/products/:id' element={<OneProduct />} />
+        <Route path='/product/:id' element={<OneProduct />} />
+        <Route path='/product/:id/edit' element={<EditProduct />} />
         <Route path='/form/display' element={<><NewProduct /><AllProducts /></>} />
       </Routes>
     </div>

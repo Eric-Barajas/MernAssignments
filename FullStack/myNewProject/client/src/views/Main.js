@@ -5,6 +5,9 @@ import PersonList from '../components/PersonList';
 export default () => {
     const [people, setPeople] = useState([]);
     const [loaded, setLoaded] = useState(false);
+    //Create an array to store errors from the API
+    const [errors, setErrors] = useState([]);
+
     useEffect(() => {
         axios.get('http://localhost:8000/api/person')
             .then(res => {
@@ -19,6 +22,15 @@ export default () => {
         axios.post('http://localhost:8000/api/person', person)
             .then(res => {
                 setPeople([...people, res.data]);
+            })
+            .catch(err => {
+                const errorResponse = err.response.data.errors; // Get the errors from err.response.data
+                const errorArr = []; // Define a temp error array to push the messages in
+                for (const key of Object.keys(errorResponse)) { // Loop through all errors and get the messages
+                    errorArr.push(errorResponse[key].message)
+                }
+                // Set Errors
+                setErrors(errorArr);
             })
     }
     return (

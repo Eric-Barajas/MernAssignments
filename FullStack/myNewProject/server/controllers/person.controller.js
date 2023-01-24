@@ -12,7 +12,7 @@ module.exports.createPerson = (request, response) => {
         lastName
     })
         .then(person => response.json(person))
-        .catch(err => response.json(err));
+        .catch(err => response.status(400).json(err));
 }
 module.exports.getAllPeople = (request, response) => {
     Person.find({})

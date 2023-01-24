@@ -16,18 +16,18 @@ export const AllProducts = (props) => {
             })
     }, [])
 
-    // const handleDelete = (idToBeDeleted) => {
-    //     axios.delete(`http://localhost:8000/api/products/${idToBeDeleted}`)
-    //         .then(res => {
-    //             const filteredProducts = products.filter((product) => {
-    //                 return product._id !== idToBeDeleted;
-    //             })
+    const handleDelete = (idToBeDeleted) => {
+        axios.delete(`http://localhost:8000/api/products/${idToBeDeleted}`)
+            .then(res => {
+                const filteredProducts = products.filter((product) => {
+                    return product._id !== idToBeDeleted;
+                })
 
-    //             setProducts(filteredProducts);
-    //         }).catch(err => {
-    //             console.log(err);
-    //         })
-    // }
+                setProducts(filteredProducts);
+            }).catch(err => {
+                console.log(err);
+            })
+    }
 
     return (
         <div>
@@ -35,18 +35,20 @@ export const AllProducts = (props) => {
 
 
             {products.map((product) => {
+                // destrcutruing product 
                 const { _id, title } = product;
                 return (
                     <div key={_id} className="shadow mb-4 rounded border p-4">
-                        <Link to={`/products/${_id}`}> {title}</Link>
-                        {/* <button
+                        <Link to={`/product/${_id}`}> {title}</Link>
+                        <button
                             onClick={event => {
                                 handleDelete(_id)
                             }}
                             className="btn btn-sm btn-outline-danger mx-1"
                         >
                             Delete
-                        </button> */}
+                        </button>
+                        <Link to={`/product/${_id}/edit`}> edit </Link>
                     </div>
                 );
             })}

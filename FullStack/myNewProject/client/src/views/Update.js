@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import PersonForm from '../components/PersonForm';
 import DeleteButton from '../components/DeleteButton';
 const Update = (props) => {
 
-    const history = useHistory()
+    const navigate = useNavigate()
     const { id } = useParams();
     const [person, setPerson] = useState();
     const [loaded, setLoaded] = useState(false);
@@ -33,7 +33,7 @@ const Update = (props) => {
                         initialFirstName={person.firstName}
                         initialLastName={person.lastName}
                     />
-                    <DeleteButton personId={person._id} successCallback={() => history.push("/")} />
+                    <DeleteButton personId={person._id} successCallback={() => navigate.push("/")} />
                 </>
             )}
         </div>

@@ -18,15 +18,17 @@ export const OneProduct = (props) => {
             })
     }, [id])
 
-    // const handleDelete = () => {
-    //     axios.delete(`http://localhost:8000/api/products/${id}`)
-    //         .then(res => {
-    //             navigate('/products');
-    //         }).catch(err => {
-    //             console.log(err);
-    //         })
-    // }
+    const handleDelete = () => {
+        axios.delete(`http://localhost:8000/api/products/${id}`)
+            .then(res => {
+                navigate('/form/display');
+            }).catch(err => {
+                console.log(err);
+            })
+    }
 
+    // waiting for api call to run the .then
+    // waiting to recieve the data
     if (product === null) {
         return null;
     }
@@ -40,12 +42,12 @@ export const OneProduct = (props) => {
             <h2>{title}</h2>
             <p>${price}</p>
             <p>{description}</p>
-            {/* <button
+            <button
                 onClick={handleDelete}
                 className="btn btn-sm btn-outline-danger mx-1"
             >
                 Delete
-            </button> */}
+            </button>
         </div>
     );
 };
