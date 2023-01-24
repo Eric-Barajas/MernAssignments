@@ -66,7 +66,6 @@ export const NewProduct = (props) => {
                         className="form-control"
                     ></textarea>
                 </div>
-
                 <button className="btn btn-sm btn-outline-success">Submit</button>
             </form>
         </div>
