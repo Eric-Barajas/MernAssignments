@@ -20,9 +20,8 @@ const createUser = () => {
     };
     return newUser;
 };
-
-
 // ------------ First Function --------------//
+
 
 // ------------ Second Function --------------//
 
@@ -40,9 +39,8 @@ const createCompany = () => {
     };
     return newCompany;
 };
-
-
 // ------------ Second Function --------------//
+
 
 // ------------ API routes --------------//
 

@@ -7,6 +7,8 @@ export const NewProduct = () => {
     const [price, setPrice] = useState("");
     const [description, setDescription] = useState("");
 
+    const [errors, setErrors] = useState(null);
+
     const navigate = useNavigate();
 
     const createProduct = async (e) => {
@@ -24,7 +26,13 @@ export const NewProduct = () => {
                 console.log("create console log" + res.data);
                 navigate(`/product/${res.data._id}`)
             }).catch(err => {
-                console.log(err);
+                /*
+                For this catch to happen, the server needs to return an error status code.
+                `?.` is optional chaining to safely access keys that may not exist.
+                `errors` exists on validation errors but maybe not on other errors.
+                */
+                console.log(err.response);
+                setErrors(err.response?.data?.errors)
             })
     }
 
@@ -37,6 +45,11 @@ export const NewProduct = () => {
             >
                 <div className="form-group">
                     <label className="h6">Title</label>
+                    {
+                        errors?.title && (
+                            <p style={{ color: 'red' }}>{errors.title?.message}</p>
+                        )
+                    }
                     <input
                         onChange={(event) => {
                             setTitle(event.target.value);
@@ -47,6 +60,11 @@ export const NewProduct = () => {
 
                 <div className="form-group">
                     <label className="h6">Price</label>
+                    {
+                        errors?.price && (
+                            <p style={{ color: 'red' }}>{errors.price?.message}</p>
+                        )
+                    }
                     <input
                         onChange={(event) => {
                             setPrice(event.target.value);
@@ -58,6 +76,11 @@ export const NewProduct = () => {
 
                 <div className="form-group">
                     <label className="h6">Description</label>
+                    {
+                        errors?.description && (
+                            <p style={{ color: 'red' }}>{errors.description?.message}</p>
+                        )
+                    }
                     <textarea
                         onChange={(event) => {
                             setDescription(event.target.value);
