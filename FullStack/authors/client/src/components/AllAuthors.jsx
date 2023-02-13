@@ -9,6 +9,11 @@ const AllAuthors = () => {
         axios.get('http://localhost:8000/api/authors')
             .then(res => {
                 console.log(res.data);
+                // res.data an array of objects
+                res.data.sort((a, b) => (
+                    // based off comparison return a 1 or a -1 
+                    (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : -1
+                ));
                 setAuthors(res.data);
             }).catch(err => {
                 console.log(err);
@@ -43,13 +48,13 @@ const AllAuthors = () => {
                 </thead>
                 <tbody>
                     {authors.map((author) => {
-                        // destrcutruing author 
+                        // destructuring author 
                         const { _id, name } = author;
                         return (
                             <tr key={_id} className="shadow mb-4 rounded border p-4 ">
                                 <td>{name}</td>
                                 <td>
-                                    <Link className="btn btn-sm btn-outline-danger mx-1" to={`/author/edit/${_id}`}> Edit </Link>
+                                    <Link className="btn btn-sm btn-outline-danger mx-1" to={`/author/${_id}/edit`}> Edit </Link>
                                     <button
                                         onClick={(e) => { handleDelete(_id) }}
                                         className="btn btn-sm btn-outline-danger mx-1"

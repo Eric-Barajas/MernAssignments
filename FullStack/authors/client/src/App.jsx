@@ -16,7 +16,7 @@ function App() {
         <Route path='/' element={<Navigate to='/authors' replace />} />
         <Route path='/authors' element={<AllAuthors />} />
         <Route path='/author/new' element={<NewAuthor />} />
-        <Route path='/author/edit/:id' element={<EditAuthor />} />
+        <Route path='/author/:id/edit' element={<EditAuthor />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
     </div>

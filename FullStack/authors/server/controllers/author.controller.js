@@ -1,4 +1,3 @@
-const { isValidObjectId } = require('mongoose');
 const { Author } = require('../models/author.model');
 
 const handleCreateAuthor = async (req, res) => {
@@ -11,19 +10,21 @@ const handleCreateAuthor = async (req, res) => {
 }
 
 const getAllAuthors = async (req, res) => {
-    const authors = await Author.find();
-    return res.json(authors);
+    try {
+        const authors = await Author.find();
+        return res.json(authors);
+    } catch (err) {
+        return res.status(400).json(err);
+    }
 }
 
 const getAuthorById = async (req, res) => {
-    const id = req.params.id
-    if (!id || isValidObjectId(id) == false) {
-        const msg = { message: "the id provided is not valid" };
-        res.status(404).send(msg)
-        return
+    try {
+        const author = await Author.findById(req.params.id)
+        return res.json(author);
+    } catch (err) {
+        return res.status(400).json(err);
     }
-    const author = await Author.findById(id)
-    return res.json(author);
 }
 
 const deleteAuthorById = async (req, res) => {

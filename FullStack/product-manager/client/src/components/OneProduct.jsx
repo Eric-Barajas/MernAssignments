@@ -29,6 +29,7 @@ export const OneProduct = (props) => {
 
     // waiting for api call to run the .then
     // waiting to recieve the data
+    // so we dont return nothing for line 43 and below (aka crashing our project)
     if (product === null) {
         return null;
     }

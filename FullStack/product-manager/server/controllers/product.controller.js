@@ -24,7 +24,7 @@ const deleteProductById = async (req, res) => {
         const deletedProduct = await Product.findByIdAndDelete(req.params.id)
         return res.json(deletedProduct);
     } catch (err) {
-        return res.status(400).json(error);
+        return res.status(400).json(err);
     }
 }
 
